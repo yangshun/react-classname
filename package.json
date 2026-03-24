@@ -1,0 +1,73 @@
+{
+  "name": "react-classname",
+  "version": "0.1.0",
+  "description": "Automatic JSX runtime for React that accepts array and object className values.",
+  "packageManager": "pnpm@10.28.1",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs"
+    },
+    "./jsx-runtime": {
+      "types": "./dist/jsx-runtime.d.ts",
+      "import": "./dist/jsx-runtime.js",
+      "require": "./dist/jsx-runtime.cjs"
+    },
+    "./jsx-dev-runtime": {
+      "types": "./dist/jsx-dev-runtime.d.ts",
+      "import": "./dist/jsx-dev-runtime.js",
+      "require": "./dist/jsx-dev-runtime.cjs"
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md"
+  ],
+  "sideEffects": false,
+  "scripts": {
+    "build": "tsdown",
+    "build:examples": "pnpm build && pnpm --filter ./apps/vite build && pnpm --filter ./apps/next build",
+    "build:next": "pnpm build && pnpm --filter ./apps/next build",
+    "build:vite": "pnpm build && pnpm --filter ./apps/vite build",
+    "check": "pnpm test && pnpm typecheck && pnpm build:examples",
+    "clean": "rm -rf dist apps/vite/dist apps/vite/.vite apps/next/.next",
+    "dev": "pnpm run dev:vite",
+    "dev:lib": "tsdown --watch --no-clean",
+    "dev:next": "pnpm build && concurrently -k -n lib,next -c cyan,green \"pnpm run dev:lib\" \"pnpm --filter ./apps/next dev\"",
+    "dev:vite": "pnpm build && concurrently -k -n lib,vite -c cyan,magenta \"pnpm run dev:lib\" \"pnpm --filter ./apps/vite dev\"",
+    "pack:dry-run": "pnpm pack --dry-run",
+    "test": "pnpm run build && pnpm run test:unit && pnpm run test:types",
+    "test:unit": "vitest run",
+    "test:types": "tsc -p tests/tsconfig.types.json --noEmit",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "react",
+    "classname",
+    "jsx-runtime",
+    "classnames",
+    "clsx"
+  ],
+  "license": "MIT",
+  "peerDependencies": {
+    "react": ">=17"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.28.0",
+    "@babel/preset-react": "^7.27.1",
+    "@types/babel__core": "^7.20.5",
+    "@types/node": "^24.5.1",
+    "@types/react": "^19.1.13",
+    "concurrently": "^9.2.1",
+    "react": "^19.2.4",
+    "tsdown": "^0.21.4",
+    "typescript": "catalog:",
+    "vitest": "^4.1.1"
+  }
+}

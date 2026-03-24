@@ -1,0 +1,27 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "lib": ["ES2020", "DOM"],
+    "strict": true,
+    "declaration": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "noEmit": true,
+    "paths": {
+      "react-classname": ["./src/index.ts"],
+      "react-classname/jsx-runtime": ["./src/jsx-runtime.ts"],
+      "react-classname/jsx-dev-runtime": ["./src/jsx-dev-runtime.ts"]
+    },
+    "skipLibCheck": true
+  },
+  "include": [
+    "src",
+    "tests/**/*.ts",
+    "tests/**/*.d.ts",
+    "tsdown.config.ts",
+    "vitest.config.ts"
+  ]
+}

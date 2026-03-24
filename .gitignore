@@ -1,0 +1,7 @@
+node_modules
+dist
+apps/vite/node_modules
+apps/vite/dist
+apps/vite/.vite
+apps/next/node_modules
+apps/next/.next
