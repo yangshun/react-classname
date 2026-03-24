@@ -1,6 +1,1 @@
-export {
-  clsx,
-  type ClassArray,
-  type ClassDictionary,
-  type ClassValue
-} from "./classname";
+export { clsx, type ClassArray, type ClassDictionary, type ClassValue } from "./classname";

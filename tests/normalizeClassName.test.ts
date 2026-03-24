@@ -1,4 +1,4 @@
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 import { clsx } from "react-classname";
 
 describe("clsx", () => {
@@ -12,9 +12,7 @@ describe("clsx", () => {
   });
 
   it("flattens nested arrays depth-first", () => {
-    expect(clsx(["btn", ["primary", ["focus"]], "wide"])).toBe(
-      "btn primary focus wide"
-    );
+    expect(clsx(["btn", ["primary", ["focus"]], "wide"])).toBe("btn primary focus wide");
   });
 
   it("includes object keys with truthy values", () => {
@@ -22,8 +20,8 @@ describe("clsx", () => {
       clsx({
         btn: true,
         primary: 1,
-        disabled: false
-      })
+        disabled: false,
+      }),
     ).toBe("btn primary");
   });
 
@@ -36,27 +34,23 @@ describe("clsx", () => {
         null,
         undefined,
         { active: true, hidden: false },
-        ["nested", { ready: 1 }]
-      ])
+        ["nested", { ready: 1 }],
+      ]),
     ).toBe("btn 0 active nested ready");
   });
 
   it("preserves object and array order", () => {
-    expect(
-      clsx([
-        "first",
-        { second: true, third: true },
-        ["fourth", { fifth: true }]
-      ])
-    ).toBe("first second third fourth fifth");
+    expect(clsx(["first", { second: true, third: true }, ["fourth", { fifth: true }]])).toBe(
+      "first second third fourth fifth",
+    );
   });
 
   it("supports class keys containing spaces", () => {
     expect(
       clsx({
         "btn primary": true,
-        hidden: false
-      })
+        hidden: false,
+      }),
     ).toBe("btn primary");
   });
 

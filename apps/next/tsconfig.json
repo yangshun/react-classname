@@ -2,11 +2,7 @@
   "compilerOptions": {
     "jsx": "react-jsx",
     "jsxImportSource": "react-classname",
-    "lib": [
-      "DOM",
-      "DOM.Iterable",
-      "ES2020"
-    ],
+    "lib": ["DOM", "DOM.Iterable", "ES2020"],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "noEmit": true,
@@ -31,7 +27,5 @@
     ".next/types/**/*.ts",
     ".next/dev/types/**/*.ts"
   ],
-  "exclude": [
-    "node_modules"
-  ]
+  "exclude": ["node_modules"]
 }

@@ -1,7 +1,7 @@
 import { transformSync } from "@babel/core";
 import presetReact from "@babel/preset-react";
 import ts from "typescript";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it } from "vite-plus/test";
 
 describe("tooling integration", () => {
   it("uses the package jsx-runtime for TypeScript jsxImportSource", () => {
@@ -12,10 +12,10 @@ describe("tooling integration", () => {
           jsx: ts.JsxEmit.ReactJSX,
           jsxImportSource: "react-classname",
           module: ts.ModuleKind.ESNext,
-          target: ts.ScriptTarget.ES2020
+          target: ts.ScriptTarget.ES2020,
         },
-        fileName: "fixture.tsx"
-      }
+        fileName: "fixture.tsx",
+      },
     );
 
     expect(result.outputText).toContain('from "react-classname/jsx-runtime"');
@@ -33,11 +33,11 @@ describe("tooling integration", () => {
             presetReact,
             {
               runtime: "automatic",
-              importSource: "react-classname"
-            }
-          ]
-        ]
-      }
+              importSource: "react-classname",
+            },
+          ],
+        ],
+      },
     );
 
     expect(result?.code).toContain('"react-classname/jsx-runtime"');

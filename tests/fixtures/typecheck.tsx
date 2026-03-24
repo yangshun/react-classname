@@ -6,9 +6,7 @@ function StrictComponent(_props: StrictProps) {
   return null;
 }
 
-const intrinsicElement = (
-  <div className={["btn", { active: true }, ["nested", 0]]} />
-);
+const intrinsicElement = <div className={["btn", { active: true }, ["nested", 0]]} />;
 const svgElement = <svg className={["icon", { visible: true }]} />;
 
 <StrictComponent className="btn" />;

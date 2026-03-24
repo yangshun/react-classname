@@ -5,17 +5,15 @@ type ClassNameProps = {
   className?: ClassValue;
 };
 
-const hasOwn = Object.prototype.hasOwnProperty;
+const hasOwn = (value: object, key: PropertyKey): boolean =>
+  Object.prototype.hasOwnProperty.call(value, key);
 
-export function normalizeIntrinsicProps<T>(
-  type: unknown,
-  props: T
-): T {
+export function normalizeIntrinsicProps<T>(type: unknown, props: T): T {
   if (typeof type !== "string" || props == null || typeof props !== "object") {
     return props;
   }
 
-  if (!hasOwn.call(props, "className")) {
+  if (!hasOwn(props, "className")) {
     return props;
   }
 
@@ -27,6 +25,6 @@ export function normalizeIntrinsicProps<T>(
 
   return {
     ...(props as Record<string, unknown>),
-    className: clsx(className)
+    className: clsx(className),
   } as T;
 }

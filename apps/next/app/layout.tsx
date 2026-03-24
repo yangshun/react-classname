@@ -3,7 +3,7 @@ import type { ReactNode } from "react";
 
 export const metadata = {
   description: "Next.js example for react-classname",
-  title: "react-classname Next.js example"
+  title: "react-classname Next.js example",
 };
 
 type RootLayoutProps = {

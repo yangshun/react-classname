@@ -112,8 +112,7 @@ code {
 
 .hero__panel {
   align-content: start;
-  background:
-    linear-gradient(180deg, rgba(255, 206, 109, 0.26), rgba(18, 93, 99, 0.16));
+  background: linear-gradient(180deg, rgba(255, 206, 109, 0.26), rgba(18, 93, 99, 0.16));
   border: 1px solid rgba(18, 93, 99, 0.12);
   border-radius: 24px;
   display: grid;
@@ -190,7 +189,9 @@ code {
   font-weight: 700;
   letter-spacing: 0.01em;
   padding: 0.95rem 1.35rem;
-  transition: transform 180ms ease, box-shadow 180ms ease;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
 .hero-button:hover,

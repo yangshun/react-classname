@@ -10,7 +10,5 @@ type WidenClassName<T> = T extends { className?: infer ExistingClassName }
     };
 
 export type WidenedIntrinsicElements = {
-  [K in keyof React.JSX.IntrinsicElements]: WidenClassName<
-    React.JSX.IntrinsicElements[K]
-  >;
+  [K in keyof React.JSX.IntrinsicElements]: WidenClassName<React.JSX.IntrinsicElements[K]>;
 };

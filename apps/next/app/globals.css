@@ -111,8 +111,7 @@ code {
 
 .hero__preview,
 .footer-card {
-  background:
-    linear-gradient(180deg, rgba(29, 123, 107, 0.08), rgba(182, 67, 106, 0.08));
+  background: linear-gradient(180deg, rgba(29, 123, 107, 0.08), rgba(182, 67, 106, 0.08));
 }
 
 .hero__preview {

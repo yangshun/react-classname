@@ -14,16 +14,7 @@ type ExampleRowProps = {
 };
 
 function Badge({ children, className }: BadgeProps) {
-  return (
-    <span
-      className={clsx([
-        "badge",
-        className
-      ])}
-    >
-      {children}
-    </span>
-  );
+  return <span className={clsx(["badge", className])}>{children}</span>;
 }
 
 function ExampleRow({ className, code, label, note }: ExampleRowProps) {
@@ -46,16 +37,16 @@ export default function Page() {
     "panel-button",
     ["panel-button--berry"],
     {
-      "panel-button--glow": true
-    }
+      "panel-button--glow": true,
+    },
   ];
 
   const stackedClasses: ClassValue = [
     "panel-button",
     ["panel-button--slate", "panel-button--caps"],
     {
-      "panel-button--frame": true
-    }
+      "panel-button--frame": true,
+    },
   ];
 
   return (
@@ -65,16 +56,9 @@ export default function Page() {
           <span className="hero__eyebrow">next.js example</span>
           <h1>Framework usage through tsconfig.json.</h1>
           <p>
-            This example sets
-            {" "}
-            <code>jsxImportSource</code>
-            {" "}
-            in
-            {" "}
-            <code>tsconfig.json</code>
-            {" "}
-            so intrinsic elements accept array and object class names directly in
-            TypeScript components.
+            This example sets <code>jsxImportSource</code> in <code>tsconfig.json</code> so
+            intrinsic elements accept array and object class names directly in TypeScript
+            components.
           </p>
         </div>
         <div className="hero__preview">
@@ -103,12 +87,8 @@ export default function Page() {
           <span className="hero__eyebrow">custom component note</span>
           <h2>Custom components still opt in manually.</h2>
           <p>
-            The runtime transforms intrinsic elements only. A component can reuse
-            the same API by calling
-            {" "}
-            <code>clsx</code>
-            {" "}
-            internally.
+            The runtime transforms intrinsic elements only. A component can reuse the same API by
+            calling <code>clsx</code> internally.
           </p>
         </div>
         <div className="footer-card__preview">
@@ -116,8 +96,8 @@ export default function Page() {
             className={[
               "badge--mint",
               {
-                "badge--outline": true
-              }
+                "badge--outline": true,
+              },
             ]}
           >
             normalized in a custom component

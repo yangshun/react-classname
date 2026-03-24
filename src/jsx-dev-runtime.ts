@@ -11,7 +11,7 @@ export const jsxDEV: typeof ReactJSXDevRuntime.jsxDEV = (
   key,
   isStaticChildren,
   source,
-  self
+  self,
 ) =>
   ReactJSXDevRuntime.jsxDEV(
     type,
@@ -19,23 +19,17 @@ export const jsxDEV: typeof ReactJSXDevRuntime.jsxDEV = (
     key,
     isStaticChildren,
     source,
-    self
+    self,
   );
 
 export namespace JSX {
   export type ElementType = React.JSX.ElementType;
   export interface Element extends React.JSX.Element {}
   export interface ElementClass extends React.JSX.ElementClass {}
-  export interface ElementAttributesProperty
-    extends React.JSX.ElementAttributesProperty {}
-  export interface ElementChildrenAttribute
-    extends React.JSX.ElementChildrenAttribute {}
-  export type LibraryManagedAttributes<C, P> = React.JSX.LibraryManagedAttributes<
-    C,
-    P
-  >;
+  export interface ElementAttributesProperty extends React.JSX.ElementAttributesProperty {}
+  export interface ElementChildrenAttribute extends React.JSX.ElementChildrenAttribute {}
+  export type LibraryManagedAttributes<C, P> = React.JSX.LibraryManagedAttributes<C, P>;
   export interface IntrinsicAttributes extends React.JSX.IntrinsicAttributes {}
-  export interface IntrinsicClassAttributes<T>
-    extends React.JSX.IntrinsicClassAttributes<T> {}
+  export interface IntrinsicClassAttributes<T> extends React.JSX.IntrinsicClassAttributes<T> {}
   export interface IntrinsicElements extends WidenedIntrinsicElements {}
 }

@@ -6,13 +6,7 @@
 /** @jsxImportSource react-classname */
 
 const element = (
-  <button
-    className={[
-      "btn",
-      ["btn-primary", { "btn-disabled": false }],
-      { "is-active": true }
-    ]}
-  >
+  <button className={["btn", ["btn-primary", { "btn-disabled": false }], { "is-active": true }]}>
     Save
   </button>
 );
@@ -74,12 +68,7 @@ If you want the same behavior in custom components, call the helper yourself:
 ```ts
 import { clsx } from "react-classname";
 
-clsx([
-  "btn",
-  0,
-  { active: true, disabled: false },
-  ["nested"]
-]);
+clsx(["btn", 0, { active: true, disabled: false }, ["nested"]]);
 // => "btn 0 active nested"
 ```
 
@@ -93,24 +82,24 @@ clsx([
 
 ## Workspace development
 
-This repository is a pnpm workspace. The publishable library stays at the root, with example apps in `apps/vite` and `apps/next`.
+This repository uses Vite+ on top of a pnpm workspace. The publishable library stays at the root, with example apps in `apps/vite` and `apps/next`.
 
 ```bash
-pnpm install
-pnpm dev
+vp install
+vp run dev
 ```
 
 Useful commands:
 
-- `pnpm build` builds the library with `tsdown`.
-- `pnpm test` runs the library test suite.
-- `pnpm typecheck` typechecks the library source.
-- `pnpm dev` runs the library watcher with the Vite example app.
-- `pnpm dev:next` runs the library watcher with the Next.js example app.
-- `pnpm build:vite` typechecks and builds the Vite example app.
-- `pnpm build:next` builds the Next.js example app.
-- `pnpm build:examples` builds both example apps.
-- `pnpm check` runs the library validation plus both example app smoke tests.
+- `vp pack` builds the library package.
+- `vp test` runs the library test suite.
+- `vp check` runs formatting, linting, and type-aware checks.
+- `vp run dev` runs the library watcher with the Vite example app.
+- `vp run dev:next` runs the library watcher with the Next.js example app.
+- `vp run build:vite` typechecks and builds the Vite example app.
+- `vp run build:next` builds the Next.js example app.
+- `vp run build:examples` builds both example apps.
+- `vp run check` runs the library validation plus both example app smoke tests.
 
 The Vite app demonstrates intrinsic `className` arrays and objects directly in JSX, plus a custom component that opts into the same pattern with `clsx`.
 The Next.js app shows the same API through a framework setup using `jsxImportSource: "react-classname"` in `tsconfig.json`.
