@@ -2,8 +2,8 @@ import "./globals.css";
 import type { ReactNode } from "react";
 
 export const metadata = {
-  description: "Next.js example for react-classname",
-  title: "react-classname Next.js example",
+  description: "Next.js example for @yangshun/react-classname",
+  title: "@yangshun/react-classname Next.js example",
 };
 
 type RootLayoutProps = {

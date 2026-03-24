@@ -1,9 +1,9 @@
-# react-classname
+# @yangshun/react-classname
 
-`react-classname` is an automatic JSX runtime for React that lets intrinsic elements accept Vue- and Svelte-style `className` values directly in JSX.
+`@yangshun/react-classname` is an automatic JSX runtime for React that lets intrinsic elements accept Vue- and Svelte-style `className` values directly in JSX.
 
 ```tsx
-/** @jsxImportSource react-classname */
+/** @jsxImportSource @yangshun/react-classname */
 
 const element = (
   <button className={["btn", ["btn-primary", { "btn-disabled": false }], { "is-active": true }]}>
@@ -17,7 +17,7 @@ It normalizes intrinsic elements only. Custom components keep their declared `cl
 ## Install
 
 ```bash
-pnpm add react-classname react
+pnpm add @yangshun/react-classname react
 ```
 
 ## Usage
@@ -30,7 +30,7 @@ Set `jsxImportSource` when using the automatic JSX runtime:
 {
   "compilerOptions": {
     "jsx": "react-jsx",
-    "jsxImportSource": "react-classname"
+    "jsxImportSource": "@yangshun/react-classname"
   }
 }
 ```
@@ -40,7 +40,7 @@ Works for both Vite and Next.js apps.
 You can also opt in per file:
 
 ```tsx
-/** @jsxImportSource react-classname */
+/** @jsxImportSource @yangshun/react-classname */
 ```
 
 ### Babel
@@ -54,7 +54,7 @@ Configure `@babel/preset-react` with the automatic runtime and `importSource`:
       "@babel/preset-react",
       {
         "runtime": "automatic",
-        "importSource": "react-classname"
+        "importSource": "@yangshun/react-classname"
       }
     ]
   ]
@@ -66,7 +66,7 @@ Configure `@babel/preset-react` with the automatic runtime and `importSource`:
 If you want the same behavior in custom components, call the helper yourself:
 
 ```ts
-import { clsx } from "react-classname";
+import { clsx } from "@yangshun/react-classname";
 
 clsx(["btn", 0, { active: true, disabled: false }, ["nested"]]);
 // => "btn 0 active nested"
@@ -102,5 +102,5 @@ Useful commands:
 - `vp run check` runs the library validation plus both example app smoke tests.
 
 The Vite app demonstrates intrinsic `className` arrays and objects directly in JSX, plus a custom component that opts into the same pattern with `clsx`.
-The Next.js app shows the same API through a framework setup using `jsxImportSource: "react-classname"` in `tsconfig.json`.
-Both apps consume `react-classname` through the workspace package itself rather than importing source files from outside their own package directories.
+The Next.js app shows the same API through a framework setup using `jsxImportSource: "@yangshun/react-classname"` in `tsconfig.json`.
+Both apps consume `@yangshun/react-classname` through the workspace package itself rather than importing source files from outside their own package directories.

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { clsx } from "react-classname";
+import { clsx } from "../src";
 
 describe("clsx", () => {
   it("returns strings unchanged", () => {

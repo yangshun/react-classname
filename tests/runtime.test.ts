@@ -1,8 +1,8 @@
 import type { ReactElement } from "react";
 import { describe, expect, it } from "vite-plus/test";
 import * as ReactJSXRuntime from "react/jsx-runtime";
-import { jsx, jsxs } from "react-classname/jsx-runtime";
-import { jsxDEV } from "react-classname/jsx-dev-runtime";
+import { jsx, jsxs } from "../src/jsx-runtime";
+import { jsxDEV } from "../src/jsx-dev-runtime";
 
 type ElementWithClassName = ReactElement<{
   className?: unknown;

@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { clsx, type ClassValue } from "react-classname";
+import { clsx, type ClassValue } from "@yangshun/react-classname";
 
 type ExampleCardProps = {
   className: ClassValue;
@@ -41,8 +41,8 @@ export default function App() {
           <span className="hero__eyebrow">vite example</span>
           <h1>React class names with array and object syntax.</h1>
           <p>
-            This app consumes the local <code>react-classname</code> package through the workspace
-            while the root library watcher keeps its built output current.
+            This app consumes the local <code>@yangshun/react-classname</code> package through the
+            workspace while the root library watcher keeps its built output current.
           </p>
         </div>
         <div className="hero__panel">
