@@ -90,14 +90,14 @@ Under the hood, `reclassify` is a custom JSX runtime for React that lets you pas
 
 When you set `jsxImportSource: "reclassify"` or Babel `importSource: "reclassify"`, your JSX compiles against `reclassify`'s runtime instead of React's default runtime. This is similar to how [Preact](https://preactjs.com/) works.
 
-`reclassify` comes with a default className string construction function (`classify`, which is just `clsx`).
+By default, `reclassify` uses `clsx` for className string construction.
 
 At runtime, `reclassify` wraps React's `jsx`, `jsxs`, and `jsxDEV` functions and checks each element before it is created:
 
 1. If the element is an intrinsic element like `<div>` or `<button>`, `reclassify` looks at its `className`.
    1. If `className` is already a string, the props are passed through unchanged.
    2. If `className` is an array, object, or other supported value, `reclassify` calls `classify()` to turn it into the final string React expects.
-2. If you called `configure({ fn })`, `classify` points to your provided function and `reclassify` uses it instead of the built-in one.
+2. If you called `configure({ fn })`, `classify` points to your provided function and `reclassify` uses it instead of the default `clsx`-based implementation.
 
 Custom components are not rewritten. They keep their existing `className` prop contract unless they call `classify()` themselves.
 
@@ -164,8 +164,8 @@ If you want the same behavior in custom components, the underlying function can 
 ```ts
 import { classify } from "reclassify";
 
-classify(["btn", 0, { active: true, disabled: false }, ["nested"]]);
-// => "btn 0 active nested"
+classify(["btn", 42, { active: true, disabled: false }, ["nested"]]);
+// => "btn 42 active nested"
 ```
 
 If a custom `fn` function is provided via `configure()`, the imported `classify` function points to that.
@@ -173,10 +173,10 @@ If a custom `fn` function is provided via `configure()`, the imported `classify`
 ## Supported values
 
 - Non-empty strings are kept as-is. Empty strings are dropped.
-- Numbers are stringified and kept, including `0`.
+- Truthy numbers are stringified and kept.
 - Arrays are flattened depth-first.
 - Objects contribute keys whose values are truthy.
-- `false`, `true`, `null`, and `undefined` are ignored when they appear as standalone entries (not as object values).
+- Standalone falsy values like `false`, `0`, `""`, `null`, `undefined`, and `NaN` are ignored.
 
 ## Workspace development
 

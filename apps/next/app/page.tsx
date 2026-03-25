@@ -100,7 +100,7 @@ export default function Page() {
               },
             ]}
           >
-            normalized in a custom component
+            constructed in a custom component
           </Badge>
         </div>
       </section>

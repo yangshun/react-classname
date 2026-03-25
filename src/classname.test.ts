@@ -6,8 +6,8 @@ describe("defaultClassify", () => {
     expect(defaultClassify("btn primary")).toBe("btn primary");
   });
 
-  it("keeps number tokens including zero", () => {
-    expect(defaultClassify(0)).toBe("0");
+  it("keeps truthy number tokens while dropping zero", () => {
+    expect(defaultClassify(0)).toBe("");
     expect(defaultClassify(42)).toBe("42");
   });
 
@@ -36,7 +36,7 @@ describe("defaultClassify", () => {
         { active: true, hidden: false },
         ["nested", { ready: 1 }],
       ]),
-    ).toBe("btn 0 active nested ready");
+    ).toBe("btn active nested ready");
   });
 
   it("preserves object and array order", () => {
@@ -59,6 +59,10 @@ describe("defaultClassify", () => {
     expect(defaultClassify([null, undefined, false, { hidden: 0 }])).toBe("");
   });
 
+  it("matches documented clsx falsy handling", () => {
+    expect(defaultClassify([true, false, "", null, undefined, 0, Number.NaN])).toBe("");
+  });
+
   it("drops empty strings", () => {
     expect(defaultClassify("")).toBe("");
     expect(defaultClassify(["btn", "", "primary"])).toBe("btn primary");
@@ -71,11 +75,11 @@ describe("defaultClassify", () => {
 });
 
 describe("classify", () => {
-  it("uses the default normalizer when unconfigured", () => {
+  it("uses the default construction function when unconfigured", () => {
     expect(classify(["btn", { active: true }])).toBe("btn active");
   });
 
-  it("uses the configured normalizer", () => {
+  it("uses the configured construction function", () => {
     const restore = configure({
       fn: (value) => `configured:${defaultClassify(value)}`,
     });

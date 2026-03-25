@@ -103,8 +103,9 @@ export default function App() {
           <span className="custom-card__eyebrow">Custom component note</span>
           <h2>Custom components still opt in manually.</h2>
           <p>
-            The runtime only normalizes intrinsic elements. For custom components, call{" "}
-            <code>classify</code> inside the component when you want the same authoring pattern.
+            The runtime only constructs className values for intrinsic elements. For custom
+            components, call <code>classify</code> inside the component when you want the same
+            authoring pattern.
           </p>
         </div>
         <div className="custom-card__preview">
@@ -116,7 +117,7 @@ export default function App() {
               },
             ]}
           >
-            normalized inside a custom component
+            constructed inside a custom component
           </Pill>
         </div>
       </section>

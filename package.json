@@ -55,6 +55,9 @@
     "typecheck": "tsc --noEmit",
     "prepare": "vp config"
   },
+  "dependencies": {
+    "clsx": "^2"
+  },
   "devDependencies": {
     "@babel/core": "^7.28.0",
     "@babel/preset-react": "^7.27.1",

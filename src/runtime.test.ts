@@ -11,15 +11,15 @@ type ElementWithClassName = ReactElement<{
 }>;
 
 describe("jsx runtime wrappers", () => {
-  it("normalizes intrinsic jsx className values", () => {
+  it("constructs intrinsic jsx className values", () => {
     const element = jsx("div", {
       className: ["btn", { active: true, disabled: false }, 0],
     }) as ElementWithClassName;
 
-    expect(element.props.className).toBe("btn active 0");
+    expect(element.props.className).toBe("btn active");
   });
 
-  it("normalizes intrinsic jsxs className values", () => {
+  it("constructs intrinsic jsxs className values", () => {
     const element = jsxs("div", {
       className: ["stack", ["gap-sm"], { surface: true }],
       children: ["a", "b"],
@@ -28,7 +28,7 @@ describe("jsx runtime wrappers", () => {
     expect(element.props.className).toBe("stack gap-sm surface");
   });
 
-  it("normalizes intrinsic jsxDEV className values", () => {
+  it("constructs intrinsic jsxDEV className values", () => {
     const element = jsxDEV(
       "div",
       {
@@ -96,7 +96,7 @@ describe("jsx runtime wrappers", () => {
     expect(reactElement.props).toBe(props);
   });
 
-  it("uses the configured normalizer for intrinsic jsx", () => {
+  it("uses the configured construction function for intrinsic jsx", () => {
     const restore = configure({
       fn: (value) => `runtime:${defaultClassify(value)}`,
     });
@@ -112,7 +112,7 @@ describe("jsx runtime wrappers", () => {
     }
   });
 
-  it("uses the configured normalizer for intrinsic jsxs and jsxDEV", () => {
+  it("uses the configured construction function for intrinsic jsxs and jsxDEV", () => {
     const restore = configure({
       fn: (value) => `runtime:${defaultClassify(value)}`,
     });
