@@ -205,6 +205,25 @@ Examples can be found in `apps/`:
 
 Both apps consume `reclassify` through the workspace package itself rather than importing source files from outside their own package directories.
 
+## Related tools
+
+If you're evaluating approaches to `className` construction, these tools are also worth knowing about.
+
+**Closest alternatives**
+
+- [`reclsx`](https://github.com/domisooo/reclsx) and [`clsx-react`](https://github.com/toviszsolt/clsx-react): The closest runtime-level alternatives to `reclassify`.
+- [`babel-plugin-transform-jsx-classnames`](https://github.com/gtournie/babel-plugin-transform-jsx-classnames): A compile-time approach that is conceptually close to `reclassify`.
+
+`reclassify`'s advantage in this group is that it pairs direct-in-JSX `className` authoring with intrinsic-element TypeScript support and a swappable app-wide construction function via `configure()`.
+
+**Adjacent tools**
+
+- [`clsx`](https://github.com/lukeed/clsx) and [`classnames`](https://github.com/JedWatson/classnames): The most common manual helpers for conditionally constructing `className` strings.
+- [`class-variance-authority`](https://github.com/joe-bell/cva) and [`tailwind-variants`](https://github.com/heroui-inc/tailwind-variants): Higher-level APIs for component variants and class composition.
+- [`tailwind-merge`](https://github.com/dcastil/tailwind-merge): Useful alongside `reclassify` when you want Tailwind conflict resolution.
+
+Compared with manual helper libraries like `clsx` and `classnames`, `reclassify` lets intrinsic JSX elements accept array and object `className` values directly through a custom JSX runtime instead of requiring a helper call in each component.
+
 ## License
 
 MIT
