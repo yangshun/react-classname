@@ -1,6 +1,6 @@
 {
   "name": "reclassify",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Automatic JSX runtime for React that accepts array and object className values.",
   "keywords": [
     "classname",
@@ -49,6 +49,7 @@
     "dev:next": "vp pack && concurrently -k -n lib,next -c cyan,green \"vp run dev:lib\" \"vp run --filter ./apps/next dev\"",
     "dev:vite": "vp pack && concurrently -k -n lib,vite -c cyan,magenta \"vp run dev:lib\" \"vp run --filter ./apps/vite dev\"",
     "pack:dry-run": "vp pm pack --dry-run",
+    "prepack": "vp pack",
     "test": "vp run build && vp run test:unit && vp run test:types",
     "test:unit": "vp test run",
     "test:types": "tsc -p src/tsconfig-types.json --noEmit",
