@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vite-plus/test";
-import { classify, configure, defaultClassify } from "./index";
+import { cx, configure, defaultClassify } from "./index";
 
 describe("defaultClassify", () => {
   it("returns strings unchanged", () => {
@@ -74,33 +74,33 @@ describe("defaultClassify", () => {
   });
 });
 
-describe("classify", () => {
+describe("cx", () => {
   it("uses the default construction function when unconfigured", () => {
-    expect(classify(["btn", { active: true }])).toBe("btn active");
+    expect(cx(["btn", { active: true }])).toBe("btn active");
   });
 
   it("uses the configured construction function", () => {
     const restore = configure({
-      fn: (value) => `configured:${defaultClassify(value)}`,
+      cx: (value) => `configured:${defaultClassify(value)}`,
     });
 
     try {
-      expect(classify(["btn", { active: true }])).toBe("configured:btn active");
+      expect(cx(["btn", { active: true }])).toBe("configured:btn active");
     } finally {
       restore();
     }
 
-    expect(classify(["btn", { active: true }])).toBe("btn active");
+    expect(cx(["btn", { active: true }])).toBe("btn active");
   });
 
   it("keeps defaultClassify stable while configured", () => {
     const restore = configure({
-      fn: () => "configured",
+      cx: () => "configured",
     });
 
     try {
       expect(defaultClassify(["btn", { active: true }])).toBe("btn active");
-      expect(classify(["btn", { active: true }])).toBe("configured");
+      expect(cx(["btn", { active: true }])).toBe("configured");
     } finally {
       restore();
     }
@@ -108,24 +108,24 @@ describe("classify", () => {
 
   it("restores nested configuration in LIFO order", () => {
     const restoreOuter = configure({
-      fn: (value) => `outer:${defaultClassify(value)}`,
+      cx: (value) => `outer:${defaultClassify(value)}`,
     });
     const restoreInner = configure({
-      fn: (value) => `inner:${defaultClassify(value)}`,
+      cx: (value) => `inner:${defaultClassify(value)}`,
     });
 
     try {
-      expect(classify(["btn"])).toBe("inner:btn");
+      expect(cx(["btn"])).toBe("inner:btn");
     } finally {
       restoreInner();
     }
 
     try {
-      expect(classify(["btn"])).toBe("outer:btn");
+      expect(cx(["btn"])).toBe("outer:btn");
     } finally {
       restoreOuter();
     }
 
-    expect(classify(["btn"])).toBe("btn");
+    expect(cx(["btn"])).toBe("btn");
   });
 });

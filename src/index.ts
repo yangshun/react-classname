@@ -1,5 +1,5 @@
 export {
-  classify,
+  cx,
   configure,
   defaultClassify,
   type ClassArray,

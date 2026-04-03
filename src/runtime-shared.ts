@@ -1,5 +1,5 @@
 import type { ClassValue } from "./classname";
-import { classify } from "./classname";
+import { cx } from "./classname";
 
 type ClassNameProps = {
   className?: ClassValue;
@@ -25,6 +25,6 @@ export function resolveIntrinsicProps<T>(type: unknown, props: T): T {
 
   return {
     ...(props as Record<string, unknown>),
-    className: classify(className),
+    className: cx(className),
   } as T;
 }

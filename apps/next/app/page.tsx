@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { classify, type ClassValue } from "reclassify";
+import { cx, type ClassValue } from "reclassify";
 
 type BadgeProps = {
   children: ReactNode;
@@ -14,7 +14,7 @@ type ExampleRowProps = {
 };
 
 function Badge({ children, className }: BadgeProps) {
-  return <span className={classify(["badge", className])}>{children}</span>;
+  return <span className={cx(["badge", className])}>{children}</span>;
 }
 
 function ExampleRow({ className, code, label, note }: ExampleRowProps) {
@@ -63,20 +63,20 @@ export default function Page() {
         </div>
         <div className="hero__preview">
           <button className={primaryClasses}>Deploy dashboard</button>
-          <code>{classify(primaryClasses)}</code>
+          <code>{cx(primaryClasses)}</code>
         </div>
       </section>
 
       <section className="examples">
         <ExampleRow
           className={primaryClasses}
-          code={classify(primaryClasses)}
+          code={cx(primaryClasses)}
           label="Objects + nested arrays"
           note="Author class toggles the same way you would in Vue or Svelte, while React still receives a final string."
         />
         <ExampleRow
           className={stackedClasses}
-          code={classify(stackedClasses)}
+          code={cx(stackedClasses)}
           label="Readable composition"
           note="Nested arrays preserve authored structure and flatten in order when the runtime serializes the className."
         />
@@ -88,7 +88,7 @@ export default function Page() {
           <h2>Custom components still opt in manually.</h2>
           <p>
             The runtime transforms intrinsic elements only. A component can reuse the same API by
-            calling <code>classify</code> internally.
+            calling <code>cx</code> internally.
           </p>
         </div>
         <div className="footer-card__preview">

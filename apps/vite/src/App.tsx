@@ -1,5 +1,5 @@
 import type { ReactNode } from "react";
-import { classify, type ClassValue } from "reclassify";
+import { cx, type ClassValue } from "reclassify";
 
 type ExampleCardProps = {
   className: ClassValue;
@@ -14,7 +14,7 @@ type PillProps = {
 };
 
 function Pill({ children, className }: PillProps) {
-  return <span className={classify(["pill", className])}>{children}</span>;
+  return <span className={cx(["pill", className])}>{children}</span>;
 }
 
 function ExampleCard({ className, description, eyebrow, title }: ExampleCardProps) {
@@ -28,7 +28,7 @@ function ExampleCard({ className, description, eyebrow, title }: ExampleCardProp
       <div className="example-card__preview">
         <button className={className}>Save changes</button>
       </div>
-      <code className="example-card__code">{classify(className)}</code>
+      <code className="example-card__code">{cx(className)}</code>
     </article>
   );
 }
@@ -60,7 +60,7 @@ export default function App() {
             Launch preview
           </button>
           <code>
-            {classify([
+            {cx([
               "hero-button",
               ["hero-button--lifted"],
               {
@@ -104,8 +104,8 @@ export default function App() {
           <h2>Custom components still opt in manually.</h2>
           <p>
             The runtime only constructs className values for intrinsic elements. For custom
-            components, call <code>classify</code> inside the component when you want the same
-            authoring pattern.
+            components, call <code>cx</code> inside the component when you want the same authoring
+            pattern.
           </p>
         </div>
         <div className="custom-card__preview">

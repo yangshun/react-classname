@@ -6,21 +6,21 @@ export type { ClassArray, ClassDictionary, ClassValue } from "clsx";
 export type ClassifyFn = (value: ClassValue) => string;
 
 type ConfigureOptions = {
-  fn: ClassifyFn;
+  cx: ClassifyFn;
 };
 
 let activeConstructor: ClassifyFn = defaultClassify;
 
-export function configure({ fn }: ConfigureOptions): () => void {
+export function configure({ cx }: ConfigureOptions): () => void {
   const previousConstructor = activeConstructor;
-  activeConstructor = fn;
+  activeConstructor = cx;
 
   return () => {
     activeConstructor = previousConstructor;
   };
 }
 
-export function classify(value: ClassValue): string {
+export function cx(value: ClassValue): string {
   return activeConstructor(value);
 }
 

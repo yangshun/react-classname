@@ -98,7 +98,7 @@ describe("jsx runtime wrappers", () => {
 
   it("uses the configured construction function for intrinsic jsx", () => {
     const restore = configure({
-      fn: (value) => `runtime:${defaultClassify(value)}`,
+      cx: (value) => `runtime:${defaultClassify(value)}`,
     });
 
     try {
@@ -114,7 +114,7 @@ describe("jsx runtime wrappers", () => {
 
   it("uses the configured construction function for intrinsic jsxs and jsxDEV", () => {
     const restore = configure({
-      fn: (value) => `runtime:${defaultClassify(value)}`,
+      cx: (value) => `runtime:${defaultClassify(value)}`,
     });
 
     try {

@@ -34,6 +34,15 @@ It constructs `className` strings for intrinsic elements only. Custom components
 npm install reclassify # Requires React >= 17 (automatic JSX runtime)
 ```
 
+> [!NOTE]
+> In `v0.5.0`, the exported helper was renamed from `classify` to `cx`, and
+> `configure({ fn })` was renamed to `configure({ cx })`.
+>
+> If you import it manually in custom components or utilities, update
+> `import { classify } from "reclassify"` to `import { cx } from "reclassify"`.
+>
+> Intrinsic JSX `className` handling is otherwise unchanged.
+
 ## Usage
 
 ```jsx
@@ -96,10 +105,10 @@ At runtime, `reclassify` wraps React's `jsx`, `jsxs`, and `jsxDEV` functions and
 
 1. If the element is an intrinsic element like `<div>` or `<button>`, `reclassify` looks at its `className`.
    1. If `className` is already a string, the props are passed through unchanged.
-   2. If `className` is an array, object, or other supported value, `reclassify` calls `classify()` to turn it into the final string React expects.
-2. If you called `configure({ fn })`, `classify` points to your provided function and `reclassify` uses it instead of the default `clsx`-based implementation.
+   2. If `className` is an array, object, or other supported value, `reclassify` calls `cx()` to turn it into the final string React expects.
+2. If you called `configure({ cx })`, `cx` points to your provided function and `reclassify` uses it instead of the default `clsx`-based implementation.
 
-Custom components are not rewritten. They keep their existing `className` prop contract unless they call `classify()` themselves.
+Custom components are not rewritten. They keep their existing `className` prop contract unless they call `cx()` themselves.
 
 On the type side, `reclassify` also widens `className` for intrinsic JSX elements so TypeScript accepts the same array/object values that the runtime can classify.
 
@@ -115,7 +124,7 @@ Here's an example using the `cn` util commonly-found in shadcn projects.
 import { configure } from "reclassify";
 import { cn } from "@/lib/utils";
 
-const restore = configure({ fn: cn });
+const restore = configure({ cx: cn });
 
 // Later, if needed (e.g. in tests):
 restore();
@@ -128,7 +137,7 @@ import { configure, defaultClassify, type ClassValue } from "reclassify";
 import { twMerge } from "tailwind-merge";
 
 configure({
-  fn(value: ClassValue) {
+  cx(value: ClassValue) {
     return twMerge(defaultClassify(value));
   },
 });
@@ -150,7 +159,7 @@ If your custom function wants to build on the default behavior, you can import `
 import { configure, defaultClassify, type ClassValue } from "reclassify";
 
 configure({
-  fn(value: ClassValue) {
+  cx(value: ClassValue) {
     const constructed = defaultClassify(value);
     return constructed ? `custom ${constructed}` : "custom";
   },
@@ -159,16 +168,16 @@ configure({
 
 ### Manual construction
 
-If you want the same behavior in custom components, the underlying function can be imported via `classify`:
+If you want the same behavior in custom components, the underlying function can be imported via `cx`:
 
 ```ts
-import { classify } from "reclassify";
+import { cx } from "reclassify";
 
-classify(["btn", 42, { active: true, disabled: false }, ["nested"]]);
+cx(["btn", 42, { active: true, disabled: false }, ["nested"]]);
 // => "btn 42 active nested"
 ```
 
-If a custom `fn` function is provided via `configure()`, the imported `classify` function points to that.
+If a custom `cx` function is provided via `configure()`, the imported `cx` function points to that.
 
 ## Supported values
 
@@ -200,7 +209,7 @@ Useful commands:
 
 Examples can be found in `apps/`:
 
-- `apps/vite`: The Vite app demonstrates intrinsic `className` arrays and objects directly in JSX, plus a custom component that opts into the same pattern with `classify`.
+- `apps/vite`: The Vite app demonstrates intrinsic `className` arrays and objects directly in JSX, plus a custom component that opts into the same pattern with `cx`.
 - `apps/next`: The Next.js app shows the same API through a framework setup using `jsxImportSource: "reclassify"` in `tsconfig.json`.
 
 Both apps consume `reclassify` through the workspace package itself rather than importing source files from outside their own package directories.
