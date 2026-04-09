@@ -1,7 +1,7 @@
 import type * as React from "react";
 import * as ReactJSXRuntime from "react/jsx-runtime";
 import type { WidenedIntrinsicElements } from "./jsx-types";
-import { resolveIntrinsicProps } from "./runtime-shared";
+import { resolveIntrinsicProps } from "./runtime-common";
 
 export const Fragment = ReactJSXRuntime.Fragment;
 

@@ -63,13 +63,61 @@ describe("jsx runtime wrappers", () => {
     expect(element.props).toBe(props);
   });
 
-  it("passes through undefined and null className unchanged", () => {
+  it("constructs intrinsic jsx empty className values for undefined and null", () => {
     const undefinedElement = jsx("div", {
       className: undefined,
     }) as ElementWithClassName;
     const nullElement = jsx("div", {
       className: null,
     }) as ElementWithClassName;
+
+    expect(undefinedElement.props.className).toBe("");
+    expect(nullElement.props.className).toBe("");
+  });
+
+  it("constructs intrinsic jsxs empty className values for undefined and null", () => {
+    const undefinedElement = jsxs("div", {
+      className: undefined,
+      children: ["a", "b"],
+    }) as ElementWithClassName;
+    const nullElement = jsxs("div", {
+      className: null,
+      children: ["a", "b"],
+    }) as ElementWithClassName;
+
+    expect(undefinedElement.props.className).toBe("");
+    expect(nullElement.props.className).toBe("");
+  });
+
+  it("constructs intrinsic jsxDEV empty className values for undefined and null", () => {
+    const undefinedElement = jsxDEV(
+      "div",
+      {
+        className: undefined,
+      },
+      undefined,
+      false,
+      {
+        fileName: "runtime.test.ts",
+        lineNumber: 1,
+        columnNumber: 1,
+      },
+      undefined,
+    ) as ElementWithClassName;
+    const nullElement = jsxDEV(
+      "div",
+      {
+        className: null,
+      },
+      undefined,
+      false,
+      {
+        fileName: "runtime.test.ts",
+        lineNumber: 1,
+        columnNumber: 1,
+      },
+      undefined,
+    ) as ElementWithClassName;
 
     expect(undefinedElement.props.className).toBe("");
     expect(nullElement.props.className).toBe("");

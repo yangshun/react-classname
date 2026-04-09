@@ -5,11 +5,12 @@ type ClassNameProps = {
   className?: ClassValue;
 };
 
-const hasOwn = (value: object, key: PropertyKey): boolean =>
-  Object.prototype.hasOwnProperty.call(value, key);
+function hasOwn(value: object, key: PropertyKey): boolean {
+  return Object.prototype.hasOwnProperty.call(value, key);
+}
 
 export function resolveIntrinsicProps<T>(type: unknown, props: T): T {
-  if (typeof type !== "string" || typeof props !== "object" || props === null) {
+  if (typeof type !== "string" || typeof props !== "object" || props == null) {
     return props;
   }
 
