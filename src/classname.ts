@@ -3,7 +3,7 @@ import type { ClassValue } from "clsx";
 
 export type { ClassArray, ClassDictionary, ClassValue } from "clsx";
 
-export type ClassifyFn = (value: ClassValue) => string;
+export type ClassifyFn = (...inputs: ClassValue[]) => string;
 
 type ConfigureOptions = {
   cx: ClassifyFn;
@@ -20,10 +20,10 @@ export function configure({ cx }: ConfigureOptions): () => void {
   };
 }
 
-export function cx(value: ClassValue): string {
-  return activeConstructor(value);
+export function cx(...inputs: ClassValue[]): string {
+  return activeConstructor(...inputs);
 }
 
-export function cxDefault(value: ClassValue): string {
-  return clsx(value);
+export function cxDefault(...inputs: ClassValue[]): string {
+  return clsx(...inputs);
 }

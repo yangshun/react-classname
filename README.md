@@ -138,8 +138,8 @@ import { configure, cxDefault, type ClassValue } from "reclassify";
 import { twMerge } from "tailwind-merge";
 
 configure({
-  cx(value: ClassValue) {
-    return twMerge(cxDefault(value));
+  cx(...inputs: ClassValue[]) {
+    return twMerge(cxDefault(...inputs));
   },
 });
 
@@ -160,8 +160,8 @@ If your custom function wants to build on the default behavior, you can import `
 import { configure, cxDefault, type ClassValue } from "reclassify";
 
 configure({
-  cx(value: ClassValue) {
-    const constructed = cxDefault(value);
+  cx(...inputs: ClassValue[]) {
+    const constructed = cxDefault(...inputs);
     return constructed ? `custom ${constructed}` : "custom";
   },
 });

@@ -39,6 +39,10 @@ describe("cxDefault", () => {
     ).toBe("btn active nested ready");
   });
 
+  it("supports multiple arguments like clsx", () => {
+    expect(cxDefault("btn", { active: true }, ["nested"])).toBe("btn active nested");
+  });
+
   it("preserves object and array order", () => {
     expect(cxDefault(["first", { second: true, third: true }, ["fourth", { fifth: true }]])).toBe(
       "first second third fourth fifth",
@@ -79,13 +83,17 @@ describe("cx", () => {
     expect(cx(["btn", { active: true }])).toBe("btn active");
   });
 
+  it("supports multiple arguments with the default construction function", () => {
+    expect(cx("btn", { active: true })).toBe("btn active");
+  });
+
   it("uses the configured construction function", () => {
     const restore = configure({
-      cx: (value) => `configured:${cxDefault(value)}`,
+      cx: (...inputs) => `configured:${cxDefault(...inputs)}`,
     });
 
     try {
-      expect(cx(["btn", { active: true }])).toBe("configured:btn active");
+      expect(cx("btn", { active: true })).toBe("configured:btn active");
     } finally {
       restore();
     }
