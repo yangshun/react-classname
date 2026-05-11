@@ -174,7 +174,7 @@ If you want the same behavior in custom components, the underlying function can 
 ```ts
 import { cx } from "reclassify";
 
-cx(["btn", 42, { active: true, disabled: false }, ["nested"]]);
+cx("btn", 42, { active: true, disabled: false }, ["nested"]);
 // => "btn 42 active nested"
 ```
 
